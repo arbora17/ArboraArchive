@@ -55,32 +55,33 @@ h1 {
     Your browser does not support the audio element.
   </audio>
 
-    <script>
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      let source;
-      let buffer;
-  
-      // Load WAV
-      fetch('homepageaudio.wav')
-        .then(response => response.arrayBuffer())
-        .then(data => audioCtx.decodeAudioData(data))
-        .then(decoded => {
-          buffer = decoded;
-          playLoop();
-        });
-  
-      function playLoop() {
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let source;
+    
+    // Load WAV
+    fetch('homepageaudio.wav')
+      .then(response => response.arrayBuffer())
+      .then(data => audioCtx.decodeAudioData(data))
+      .then(buffer => {
+        // Create source once
         source = audioCtx.createBufferSource();
         source.buffer = buffer;
-        source.connect(audioCtx.destination);
-        source.loop = true;       // seamless loop
+        source.loop = true;
+    
+        // Set volume
+        const gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0.15;
+    
+        // Connect to destination
+        source.connect(gainNode).connect(audioCtx.destination);
+    
+        // Start looping
         source.start(0);
-      }
-  
-      // Optional: set volume
-      const gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0.15; // 15% volume
-      source.connect(gainNode).connect(audioCtx.destination);
+      });
+    
+    // Optional: resume on user interaction for mobile/Safari
+    document.addEventListener('click', () => audioCtx.resume());
     </script>
 </body>
 
