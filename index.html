@@ -57,11 +57,12 @@ h1 {
 
   <script>
     const audio = document.getElementById('hpaudio');
-    audio.volume = 0.15; // low volume
-    audio.play().catch(() => {
-      console.log('Autoplay blocked — user interaction required');
+    
+    document.addEventListener('click', () => {
+      audio.volume = 0.15; // low volume
+      audio.play().catch(() => console.log('Still blocked'));
     });
-  </script>
+    </script>
 </body>
 
 </html>
