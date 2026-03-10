@@ -31,7 +31,13 @@ body {
 <p> website is working. </p>
 
 
-
+<script>
+  const vid = document.getElementById('bgvideo');
+  vid.addEventListener('ended', () => {
+    vid.currentTime = 0;
+    vid.play();
+  });
+</script>
 
 </body>
 </html>
