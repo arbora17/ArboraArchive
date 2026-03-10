@@ -63,6 +63,33 @@ h1 {
       audio.play().catch(() => console.log('Still blocked'));
     });
     </script>
+    <script>
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      let source;
+      let buffer;
+  
+      // Load WAV
+      fetch('homepageaudio.wav')
+        .then(response => response.arrayBuffer())
+        .then(data => audioCtx.decodeAudioData(data))
+        .then(decoded => {
+          buffer = decoded;
+          playLoop();
+        });
+  
+      function playLoop() {
+        source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        source.loop = true;       // seamless loop
+        source.start(0);
+      }
+  
+      // Optional: set volume
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0.15; // 15% volume
+      source.connect(gainNode).connect(audioCtx.destination);
+    </script>
 </body>
 
 </html>
