@@ -35,31 +35,33 @@ h1 {
 </head>
 
 <body>
+  <!-- Video background -->
   <video autoplay muted loop id="bgvideo">
     <source src="homepage.mp4" type="video/mp4">
   </video>
+
+  <!-- Overlay -->
   <div id="overlay"></div>
-  <div id="content"></div>
 
-    <!-- Background audio -->
-    <audio id="hpaudio" autoplay loop>
-      <source src="homepageaudio.wav" type="audio/wav">
-      Your browser does not support the audio element.
-    </audio>
+  <!-- Page content -->
+  <div id="content">
+    <h1>Arbora Archive</h1>
+    <p>Website is working.</p>
+  </div>
 
-    <script>
-      const audio = document.getElementById('hpaudio');
-      audio.volume = 0.15; // low volume
-      audio.play().catch(() => {
-        console.log('Autoplay blocked — user interaction required');
-      });
-    </script>
-<h1>Arbora Archive</h1>
-<p> </p>
+  <!-- Background audio -->
+  <audio id="hpaudio" autoplay loop>
+    <source src="homepageaudio.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
 
-
-
-
-
+  <script>
+    const audio = document.getElementById('hpaudio');
+    audio.volume = 0.15; // low volume
+    audio.play().catch(() => {
+      console.log('Autoplay blocked — user interaction required');
+    });
+  </script>
 </body>
+
 </html>
