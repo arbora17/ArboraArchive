@@ -58,30 +58,43 @@ h1 {
   <script>
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     let source;
+    let buffer;
     
     // Load WAV
     fetch('homepageaudio.wav')
       .then(response => response.arrayBuffer())
       .then(data => audioCtx.decodeAudioData(data))
-      .then(buffer => {
-        // Create source once
-        source = audioCtx.createBufferSource();
-        source.buffer = buffer;
-        source.loop = true;
-    
-        // Set volume
-        const gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0.15;
-    
-        // Connect to destination
-        source.connect(gainNode).connect(audioCtx.destination);
-    
-        // Start looping
-        source.start(0);
+      .then(decoded => {
+        buffer = decoded;
+        initAudio();
       });
     
-    // Optional: resume on user interaction for mobile/Safari
-    document.addEventListener('click', () => audioCtx.resume());
+    function initAudio() {
+      // Create a single buffer source
+      source = audioCtx.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+    
+      // Create gain node for volume
+      const gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0.15; // 15% volume
+    
+      // Connect source → gain → destination
+      source.connect(gainNode).connect(audioCtx.destination);
+    }
+    
+    // Start playback after user interaction
+    function startAudio() {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      if (source) {
+        source.start(0);
+      }
+    }
+    
+    // Add click/tap listener to start audio
+    document.addEventListener('click', startAudio, { once: true });
     </script>
 </body>
 
