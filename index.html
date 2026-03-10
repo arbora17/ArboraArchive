@@ -55,14 +55,6 @@ h1 {
     Your browser does not support the audio element.
   </audio>
 
-  <script>
-    const audio = document.getElementById('hpaudio');
-    
-    document.addEventListener('click', () => {
-      audio.volume = 0.15; // low volume
-      audio.play().catch(() => console.log('Still blocked'));
-    });
-    </script>
     <script>
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       let source;
