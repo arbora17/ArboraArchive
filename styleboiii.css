@@ -17,3 +17,19 @@
 .titlespage2 h2 {
     margin: 0;
 }
+
+.play {
+    font-size: 40px;
+    background: none;
+    border: 2px solid white;
+    color: rgba(168, 175, 182, 0.65);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.play:hover {
+    transform: scale(1.15);
+}
