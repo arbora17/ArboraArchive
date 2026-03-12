@@ -35,21 +35,25 @@
 }
 
 .loading .dots::after {
-    content: "....................................................................................................";
-    /* 100 dots */
-    display: inline-block;
-    width: 2ch;
-    /* how many dots are visible at a time */
-    overflow: hidden;
-    animation: dot-slide 5s linear infinite;
+    content: "..";
+    /* starting dots */
+    animation: dots 1s steps(1, end) infinite;
 }
 
-@keyframes dot-slide {
+@keyframes dots {
     0% {
-        transform: translateX(0ch);
+        content: "";
+    }
+
+    33% {
+        content: ".";
+    }
+
+    66% {
+        content: "..";
     }
 
     100% {
-        transform: translateX(-100ch);
+        content: "...";
     }
 }
