@@ -33,3 +33,27 @@
 .play:hover {
     transform: scale(1.15);
 }
+
+.loading .dots::after {
+    content: "..";
+    /* starting dots */
+    animation: dots 1s steps(1, end) infinite;
+}
+
+@keyframes dots {
+    0% {
+        content: "";
+    }
+
+    33% {
+        content: ".";
+    }
+
+    66% {
+        content: "..";
+    }
+
+    100% {
+        content: "...";
+    }
+}
