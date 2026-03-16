@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arbora Tune</title>
+<link rel="stylesheet" href="styleboiii.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style> 
+body {
+  background: black;
+  color: rgba(184, 184, 184, 0.672);
+  font-family:'Orbitron';
+  text-align: center;
+  margin-top: 100px;
+  
+}
+
+h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;  /* optional, makes it all caps */
+      letter-spacing: 2px;        /* optional, spaced letters */
+      color: #9e9c9c99; 
+      transform: scaleX(1);
+
+    }
+
+#bgvideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+
+</style>
+</head>
+<body>
+  <!-- Video background -->
+  <video autoplay muted loop id="bgvideo">
+    <source src="page3.mp4" type="video/mp4">
+  </video>
+
+  <!-- Overlay -->
+  <div id="overlay"></div>
+
+  <!-- Page content -->
+  <div class="titlespage2">
+    <h1 class="loading">Arbora Tune<span class="dots"></span></h1>
+    <h3>July/24/25 'B'</h3>
+  </div>
+    
+  <audio id="page3.mp3">
+    <source src="page3.mp3" type="audio/wav">
+  </audio>
+  
+  <button class="play" onclick="page3.mp4.play()">▶</button>
+
+    
+   
+ 
+</body>
